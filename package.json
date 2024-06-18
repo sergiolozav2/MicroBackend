@@ -6,12 +6,12 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
-    "dev:clean": "docker compose up -d && npm run dev",
+    "dev:fresh": "docker compose up -d && npm run dev",
     "dev": "tsx watch --clear-screen=false ./src/index.ts",
     "migrate": "drizzle-kit generate:pg",
     "push": "drizzle-kit push:pg",
     "test:unit": "vitest --reporter=basic --disable-console-intercept",
-    "diagram": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/db/dbml.ts"
+    "diagram": "node ./dist/db/dbml.js"
   },
   "keywords": [],
   "author": "",
