@@ -1,0 +1,64 @@
+table lineaTransporte {
+  lineaTransporteID serial [pk, not null, increment]
+  numeroLinea varchar(30) [not null, unique]
+  rutaIdaID integer [not null]
+  rutaVueltaID integer [not null]
+  creadoEn timestamp(3) [not null, default: `now()`]
+  administradorID integer
+}
+
+table puntoRuta {
+  puntoRutaID serial [pk, not null, increment]
+  latitud "double precision" [not null]
+  longitud "double precision" [not null]
+  rutaID integer [not null]
+}
+
+table ruta {
+  rutaID serial [pk, not null, increment]
+}
+
+table usuario {
+  usuarioID serial [pk, not null, increment]
+  nombre varchar(256) [not null]
+  password varchar(128) [not null]
+  email varchar(64) [not null, unique]
+  permisos varchar(16) [not null, default: '111']
+  verificado boolean [not null, default: false]
+  creadoEn timestamp(3) [not null, default: `now()`]
+}
+
+table vehiculo {
+  vehiculoID serial [pk, not null, increment]
+  matricula varchar(32) [not null]
+  modelo varchar(128) [not null]
+  aireAcondicionado boolean [not null]
+  propietarioNombre varchar(128) [not null]
+  activo boolean [not null, default: false]
+  latitud "double precision"
+  longitud "double precision"
+  creadoEn timestamp(3) [not null, default: `now()`]
+  lineaTransporteID integer [not null]
+}
+
+table vehiculoConductor {
+  usuarioID integer [not null]
+  vehiculoID integer [not null]
+  creadoEn timestamp(3) [not null, default: `now()`]
+
+  indexes {
+    (usuarioID, vehiculoID) [pk]
+  }
+}
+
+ref: lineaTransporte.administradorID - usuario.usuarioID
+
+ref: lineaTransporte.rutaVueltaID - ruta.rutaID
+
+ref: puntoRuta.rutaID > ruta.rutaID
+
+ref: vehiculoConductor.usuarioID > usuario.usuarioID
+
+ref: vehiculoConductor.vehiculoID - vehiculo.vehiculoID
+
+ref: vehiculo.lineaTransporteID > lineaTransporte.lineaTransporteID
