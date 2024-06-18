@@ -8,7 +8,7 @@ REST API para proyecto de transporte usando Fastify, Drizzle y PostgreSQL
 - docker compose up
 - npm run dev
 
-## Estructura de proyectos
+## Estructura de proyecto
 - src/
  - db/
   - schemas.ts -> Contiene definición de tablas usando drizzle
@@ -33,3 +33,13 @@ REST API para proyecto de transporte usando Fastify, Drizzle y PostgreSQL
 
 - app.ts -> Define función para crear instancia de servidor
 - index.ts -> Inicia el servidor
+
+## Scripts en package.json
+- start -> Inicia servidor en producción
+- build -> Convierte typescript a javascript para producción
+- dev -> Inicia servidor
+- dev:fresh -> Inicia contenedores y ejecuta npm run dev
+- migrate -> Genera archivos de migración de drizzle
+- push -> Aplica cambios de schema.ts a la base de datos en drizzle.config.json
+- test:unit -> Nada jeje
+- diagram -> Genera diagrama de tablas según /db/schemas.ts. El archivo generado /schema.dbml se puede ver en esta página https://dbdiagram.io/d
