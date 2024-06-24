@@ -11,6 +11,9 @@ export const SelectVehiculoSchema = Type.Object({
   creadoEn: Type.String(),
   propietarioNombre: Type.String(),
   lineaTransporteID: Type.Number(),
+  lineaTransporte: Type.Object({
+    numeroLinea: Type.String(),
+  }),
 });
 
 export const GetVehiculoSchema = {
@@ -39,4 +42,43 @@ const PostVehiculoSchemaResult = Type.Object({
 export const PostVehiculoSchema = {
   body: PostVehiculoSchemaBody,
   response: { 200: PostVehiculoSchemaResult },
+};
+
+// ESQUEMA DE OBTENER VEHÍCULOS EN TIEMPO REAL
+export const GetVehiculoTiempoRealResult = Type.Object({
+  vehiculoID: Type.Number(),
+  matricula: Type.String(),
+  modelo: Type.String(),
+  lineaTransporteID: Type.Number(),
+  lineaTransporte: Type.Object({
+    numeroLinea: Type.String(),
+  }),
+  latitud: Type.Optional(Type.Number()),
+  longitud: Type.Optional(Type.Number()),
+});
+
+export const GetVehiculoTiempoRealSchema = {
+  response: {
+    200: Type.Object({
+      list: Type.Array(GetVehiculoTiempoRealResult),
+    }),
+  },
+};
+
+// ESQUEMA DE ACTUALIZAR UBICACIÓN
+const PutVehiculoTiempoRealResult = Type.Object({
+  vehiculoID: Type.Number(),
+  latitud: Type.Number(),
+  longitud: Type.Number(),
+});
+
+export type PutVehiculoTiempoRealBody = Static<
+  typeof PutVehiculoTiempoRealResult
+>;
+
+export const PutVehiculoTiempoRealSchema = {
+  body: PutVehiculoTiempoRealResult,
+  response: {
+    200: Type.Object({ success: Type.Boolean() }),
+  },
 };

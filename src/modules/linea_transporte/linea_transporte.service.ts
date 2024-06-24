@@ -48,7 +48,18 @@ export class LineaTransporteService extends SharedRepository {
             usuarioID: true,
           },
         },
-        vehiculos: true,
+        vehiculos: {
+          columns: {
+            activo: false,
+          },
+          with: {
+            lineaTransporte: {
+              columns: {
+                numeroLinea: true,
+              },
+            },
+          },
+        },
         rutaIda: {
           with: {
             puntos: true,
@@ -83,7 +94,18 @@ export class LineaTransporteService extends SharedRepository {
             },
           },
         },
-        vehiculos: true,
+        vehiculos: {
+          columns: {
+            activo: false,
+          },
+          with: {
+            lineaTransporte: {
+              columns: {
+                numeroLinea: true,
+              },
+            },
+          },
+        },
       },
       where: eq(schema.lineaTransporte.lineaTransporteID, lineaTransporteID),
     });

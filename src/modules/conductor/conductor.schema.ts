@@ -63,6 +63,9 @@ const GetVehiculosConductorSchemaResponse = Type.Object({
       vehiculoID: Type.Number(),
       vehiculo: Type.Object({
         creadoEn: Type.String(),
+        lineaTransporte: Type.Object({
+          numeroLinea: Type.String(),
+        }),
         lineaTransporteID: Type.Number(),
         vehiculoID: Type.Number(),
         matricula: Type.String(),

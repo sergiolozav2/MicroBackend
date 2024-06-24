@@ -1,6 +1,16 @@
 import { FastifyTypebox } from "@api/types/FastifyTypebox";
 import { LoginSchema, RegisterRequestSchema } from "./auth.schema";
 import { AuthService } from "./auth.service";
+import { FastifyRequest } from "fastify";
+
+abstract class IAuthHandler {
+  constructor(authService: AuthService) {
+    this.authService = authService;
+  }
+  authService: AuthService;
+  register(req: FastifyRequest) {}
+  login(req: FastifyRequest) {}
+}
 
 export default function routes(
   fastify: FastifyTypebox,

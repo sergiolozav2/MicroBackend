@@ -57,7 +57,18 @@ export class ConductorService extends SharedRepository {
       with: {
         vehiculos: {
           with: {
-            vehiculo: true,
+            vehiculo: {
+              columns: {
+                activo: false,
+              },
+              with: {
+                lineaTransporte: {
+                  columns: {
+                    numeroLinea: true,
+                  },
+                },
+              },
+            },
           },
         },
       },

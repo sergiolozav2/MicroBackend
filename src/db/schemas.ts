@@ -57,6 +57,9 @@ export const vehiculo = pgTable("vehiculo", {
   aireAcondicionado: boolean("aireAcondicionado").notNull(),
   propietarioNombre: varchar("propietarioNombre", { length: 128 }).notNull(),
   activo: boolean("activo").notNull().default(false),
+  ultimoViaje: timestamp("ultimoViaje", { precision: 3, mode: "string" })
+    .defaultNow()
+    .notNull(),
   latitud: doublePrecision("latitud"),
   longitud: doublePrecision("longitud"),
   creadoEn: timestamp("creadoEn", { precision: 3, mode: "string" })
