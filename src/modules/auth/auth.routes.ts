@@ -3,13 +3,17 @@ import { LoginSchema, RegisterRequestSchema } from "./auth.schema";
 import { AuthService } from "./auth.service";
 import { FastifyRequest } from "fastify";
 
-abstract class IAuthHandler {
+export abstract class IAuthHandler {
   constructor(authService: AuthService) {
     this.authService = authService;
   }
   authService: AuthService;
-  register(req: FastifyRequest) {}
-  login(req: FastifyRequest) {}
+  register(req: FastifyRequest) {
+    console.log(req)
+  }
+  login(req: FastifyRequest) {
+    console.log(req)
+  }
 }
 
 export default function routes(

@@ -1,7 +1,7 @@
 import { schema } from "@api/plugins/db";
 import { SharedRepository } from "../shared/shared.repository";
 import { PostVehiculoType, PutVehiculoTiempoRealBody } from "./vehiculo.schema";
-import { eq, gt, lt } from "drizzle-orm";
+import { eq, gt } from "drizzle-orm";
 
 export class VehiculoService extends SharedRepository {
   async crear(data: PostVehiculoType) {
