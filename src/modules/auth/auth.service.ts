@@ -14,7 +14,6 @@ export class AuthService extends SharedRepository {
 
   async register(usuario: InsertUserType) {
     usuario = await this.registerSetup(usuario);
-    usuario.password = await this.hashPassword(usuario.password);
     const [user] = await this.db
       .insert(schema.usuario)
       .values(usuario)
@@ -27,6 +26,7 @@ export class AuthService extends SharedRepository {
     return usuario;
   }
   async login(data: LoginRequestType) {
+    console.log(await this.hashPassword("string"))
     const usuario = await this.userRepository.findByEmail(data.email);
 
     if (!usuario) {

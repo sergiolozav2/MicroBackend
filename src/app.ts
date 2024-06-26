@@ -12,7 +12,7 @@ export async function buildApp() {
   }).withTypeProvider<TypeBoxTypeProvider>();
 
   app.register(fastifyCors, {
-    origin: ["http://localhost:5173", "https://starlit-dolphin-f4fbce.netlify.app"],
+    origin: ["http://localhost:5173", "https://starlit-dolphin-f4fbce.netlify.app", "https://reactmicro.netlify.app"],
     credentials: true,
   });
 
